@@ -1,0 +1,24 @@
+<div>
+    <input>
+    <input>
+    <input>
+    <input>
+    <input>
+    <input>
+    <input>
+    <button>Create</button>
+</div>
+
+
+<div>
+    <ul>
+        <li *ngFor="let ticket of tickets">
+          <a>
+            {{ticket.id}} - {{ticket.city1}}.  {{ticket.cost}}.
+          </a>
+        </li>
+      </ul>
+</div>
+
+
+<!-- (click)="getCompanyId(company.id)" -->
