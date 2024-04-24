@@ -1,21 +1,31 @@
 <div>
-    <input>
-    <input>
-    <input>
-    <input>
-    <input>
-    <input>
-    <input>
-    <button>Create</button>
+  <input [(ngModel)]="newticId">  
 </div>
+<br>
+<div>
+    <input [(ngModel)]="city1">
+    <input [(ngModel)]="city2">
+    <input [(ngModel)]="cost">
+    <input [(ngModel)]="company">
+    <input type="date" [(ngModel)]="depar_date">
+    <input type="time" [(ngModel)]="depar_time">
+    <input type="date" [(ngModel)]="arrival_date">
+    <input type="time" [(ngModel)]="arrival_time">
+    <input [(ngModel)]="count">
+    <br>
+    <button (click)="updateTickets()">Update</button>
+    <button (click)="createTickets()">Create</button>
+</div>
+<br>
 
 
 <div>
     <ul>
         <li *ngFor="let ticket of tickets">
           <a>
-            {{ticket.id}} - {{ticket.city1}} - {{ticket.city2}}  {{ticket.cost}}.
+            {{ticket.id}} - {{ticket.city1}} - {{ticket.city2}}  {{ticket.cost}}. 
           </a>
+          <button (click)="deleteTicket(ticket.id)">Delete</button>
         </li>
       </ul>
 </div>

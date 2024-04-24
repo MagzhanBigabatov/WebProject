@@ -35,7 +35,7 @@ export class LoginComponent {
       const account = this.accounts.find(a => a.nickname === this.newNickName);
       if (account) {
         // Сохранение id учетной записи в localStorage
-        localStorage.setItem('accountId', account.id.toString());
+        localStorage.setItem('nickname', this.newNickName);
       }
 
       // Перенаправление на главную страницу

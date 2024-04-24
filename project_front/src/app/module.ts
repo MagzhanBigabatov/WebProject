@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export interface Company{
     id: number;
     name: string;
@@ -28,10 +30,10 @@ export interface Ticket {
     city2: string;
     cost: number;
     company: string;
-    depar_date: Date | null;
-    depar_time: string | null;
-    arrival_date: Date | null;
-    arrival_time: string | null;
+    depar_date:Date;
+    depar_time: Time;
+    arrival_date: Date;
+    arrival_time: Time;
     number: number;
 }
 export interface Hotel {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { registr_login } from '../module';
 import { Avia } from '../Avia.service';
 import { LoginComponent } from '../login/login.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home-page',
@@ -10,22 +11,23 @@ import { LoginComponent } from '../login/login.component';
 })
 export class HomePageComponent implements OnInit {
   accounts: registr_login[] = [];
+  account: registr_login | null = null; // Declare 'account' property
 
-   
-  constructor (private Avia: Avia){}
-  ngOnInit() : void {
-    this.getTickets()
+  constructor(private Avia: Avia) { }
+
+  ngOnInit(): void {
+    this.getTickets();
   }
 
+  
 
-
-  getTickets(): void {
+getTickets(): void {
     const accountId = localStorage.getItem('accountId');
-    if (accountId) {
-      this.Avia.getAccountById(accountId).subscribe((data: registr_login) => {
-        // Присваиваем данные учетной записи переменной account
-        this.account = data;
-      });
+    const nickname = localStorage.getItem('nickname');
+    if (nickname) {
+        this.Avia.getAccountByNickname(nickname).subscribe((data: registr_login) => {
+            this.account = data; // Assign the received data
+      })
+    }
     }
   }
-}
