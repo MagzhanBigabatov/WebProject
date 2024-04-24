@@ -31,10 +31,19 @@ export class LoginComponent {
   login() {
     const isValidCredentials = this.regLoginService.checkCredentials(this.newNickName, this.newPassword);
     if (isValidCredentials) {
+      // Получение учетной записи по nickname
+      const account = this.accounts.find(a => a.nickname === this.newNickName);
+      if (account) {
+        // Сохранение id учетной записи в localStorage
+        localStorage.setItem('accountId', account.id.toString());
+      }
+
       // Перенаправление на главную страницу
-      this.router.navigate(['']);
+      this.router.navigate(['/Home']);
+      
     } else {
       alert('Incorrect nickname or password');
     }
-  }
+}
+
 }

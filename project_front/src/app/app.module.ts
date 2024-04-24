@@ -5,24 +5,24 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { VacancyByCompanyComponent } from './vacancy-by-company/vacancy-by-company.component';
 import { RouterModule } from '@angular/router';
-import { CompaniesComponent } from './companies/companies.component';
 import { RegistrComponent } from './registr/registr.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { HotelsComponent } from './hotels/hotels.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     
     AppComponent,
     VacancyByCompanyComponent,
-    CompaniesComponent,
     RegistrComponent,
     LoginComponent,
     MainComponent,
     TicketsComponent,
-    HotelsComponent
+    HotelsComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,8 @@ import { HotelsComponent } from './hotels/hotels.component';
       { path: "Login", component: LoginComponent},
       { path: "Registration", component: RegistrComponent},
       { path: 'Tickets', component: TicketsComponent},
-      { path: 'Hotels', component: HotelsComponent}
+      { path: 'Hotels', component: HotelsComponent},
+      { path: 'Home', component: HomePageComponent}
     ])
   ],
   providers: [],

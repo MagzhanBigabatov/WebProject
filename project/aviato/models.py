@@ -1,6 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    manager = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
+    
+
+    
 class Account(models.Model):
     nickname = models.CharField(max_length=255)
     mail = models.CharField(max_length=255)
@@ -65,7 +76,7 @@ class HotelsNUM(models.Model):
     cost = models.FloatField(default=0)
     hotel = models.ForeignKey(Hotels, on_delete=models.CASCADE)
 
-
+#добавить 
 
 class Buy_Ticket(models.Model):
     Per_id = models.ForeignKey(Account, on_delete=models.CASCADE)

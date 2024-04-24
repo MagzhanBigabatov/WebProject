@@ -22,6 +22,10 @@ import { tap } from 'rxjs/operators';
           tap(accounts => this.accounts = accounts)
         );
     }
+
+    getAccountById(id: number): Observable<registr_login> {
+      return this.client.get<registr_login>(`${this.BASE_URL}/accounts/${id}`);
+    }
   
     createAccount(nickName: String, Mail: String, Password: String): Observable<registr_login>{
         return this.client.post<registr_login>(

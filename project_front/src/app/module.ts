@@ -16,6 +16,7 @@ export interface Vacancy{
 }
 
 export interface registr_login{
+    id: number;
     nickname: string;
     mail: string;
     password: string;

@@ -1,13 +1,9 @@
 from rest_framework import serializers
 from aviato.models import Account, Tikets, Hotels
 from .models import Buy_Ticket, HotelsNUM
+from django.contrib.auth.models import User
 
 
-
-# class AccountSerializer1(serializers.ModelSerializer):
-#     class Meta:
-#         model = Account
-#         fields = '__all__' 
 
 
 #serializers.Serializer
@@ -22,6 +18,7 @@ class AccountSerializer(serializers.Serializer):
         return Account.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
+
         instance.nickname = validated_data.get('nickname', instance.nickname)
         instance.mail = validated_data.get('mail', instance.mail)
         instance.password = validated_data.get('password', instance.password)
@@ -54,6 +51,12 @@ class BuyTicketSerializer(serializers.Serializer):
 
 
 #serializers.ModelSerializer
+
+class UserBasicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
+
 class TicketsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tikets
@@ -63,6 +66,20 @@ class HotelsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hotels
         fields = '__all__'
+
+    def create (self, validated_data):
+        instance = Hotels.objects.create(
+            city = validated_data['city'],
+            name = validated_data['name'],
+            cost = validated_data['cost'],
+            mini_descrip = validated_data['mini_descrip'],
+            description = validated_data['description'],
+            raiting = validated_data['raiting'],
+            arrival_date = validated_data['arrival_date'],
+            date_departure = validated_data['date_departure'],
+            url = validated_data['url'],
+        )
+        return instance
 
 class HetelsNUMSerializer(serializers.ModelSerializer):
     class Meta:
