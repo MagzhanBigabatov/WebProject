@@ -10,6 +10,7 @@ import { RegistrComponent } from './registr/registr.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { HotelsComponent } from './hotels/hotels.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TicketsComponent } from './tickets/tickets.component';
     RegistrComponent,
     LoginComponent,
     MainComponent,
-    TicketsComponent
+    TicketsComponent,
+    HotelsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { TicketsComponent } from './tickets/tickets.component';
       { path: "", component: MainComponent},
       { path: "Login", component: LoginComponent},
       { path: "Registration", component: RegistrComponent},
-      { path: 'Tickets', component: TicketsComponent}
+      { path: 'Tickets', component: TicketsComponent},
+      { path: 'Hotels', component: HotelsComponent}
     ])
   ],
   providers: [],

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { registr_login, Ticket } from './module';
+import { Hotel, registr_login, Ticket } from './module';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
@@ -12,6 +12,7 @@ import { tap } from 'rxjs/operators';
     BASE_URL = 'http://127.0.0.1:8000';
     accounts: registr_login[] = [];
     tickets: Ticket[]= [];
+    hotels: Hotel[]= [];
   
     constructor(private client: HttpClient) { }
   
@@ -47,7 +48,11 @@ import { tap } from 'rxjs/operators';
       );
     }
 
-    // getTickets_by_id():
+    getHotels(): Observable<Hotel[]>{
+      return this.client.get<Hotel[]>(`${this.BASE_URL}/aviato/Hotels/`).pipe(
+        tap(hotels => this.hotels = hotels)
+      );
+    }
   
   }
 
