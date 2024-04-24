@@ -13,14 +13,22 @@ export class HomePageComponent implements OnInit {
   accounts: registr_login[] = [];
   account: registr_login | null = null; // Declare 'account' property
 
+<<<<<<< HEAD
   constructor(private Avia: Avia) { }
 
   ngOnInit(): void {
     this.getTickets();
+=======
+   
+  constructor (private Avia: Avia){}
+  ngOnInit() : void {
+    
+>>>>>>> 959e3e67e4388668198fb0ee12f3fb61737166f6
   }
 
   
 
+<<<<<<< HEAD
 getTickets(): void {
     const accountId = localStorage.getItem('accountId');
     const nickname = localStorage.getItem('nickname');
@@ -31,3 +39,8 @@ getTickets(): void {
     }
     }
   }
+=======
+
+
+}
+>>>>>>> 959e3e67e4388668198fb0ee12f3fb61737166f6

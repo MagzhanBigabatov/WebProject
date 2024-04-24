@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Avia } from '../Avia.service';
 import { registr_login } from '../module';
 import { Router } from '@angular/router';
+import { CurrentUserService } from '../current-user.service';
+import { User } from '../module';
 
 
 @Component({
@@ -15,7 +17,11 @@ export class LoginComponent {
   newNickName: string = "";
   newPassword: string = "";
   
-  constructor(private regLoginService: Avia, private router: Router) {}
+  constructor(
+    private regLoginService: Avia, 
+    private router: Router,
+    private readonly currentUserService: CurrentUserService
+  ) {}
 
   ngOnInit() : void {
     this.regLoginService.getAccount().subscribe((data: registr_login[]) => {
@@ -31,6 +37,7 @@ export class LoginComponent {
   login() {
     const isValidCredentials = this.regLoginService.checkCredentials(this.newNickName, this.newPassword);
     if (isValidCredentials) {
+<<<<<<< HEAD
       // Получение учетной записи по nickname
       const account = this.accounts.find(a => a.nickname === this.newNickName);
       if (account) {
@@ -38,12 +45,18 @@ export class LoginComponent {
         localStorage.setItem('nickname', this.newNickName);
       }
 
+=======
+      const user:User = {
+        nickName: this.newNickName,
+        password: this.newPassword
+      };
+      this.currentUserService.changeCurrentUser(user);
+>>>>>>> 959e3e67e4388668198fb0ee12f3fb61737166f6
       // Перенаправление на главную страницу
-      this.router.navigate(['/Home']);
-      
+      this.router.navigate(['']);
     } else {
       alert('Incorrect nickname or password');
     }
-}
+  }
 
 }

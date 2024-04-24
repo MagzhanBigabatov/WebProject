@@ -10,6 +10,8 @@ import { MainComponent } from './main/main.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { HotelsComponent } from './hotels/hotels.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MainBannerComponent } from './main-banner/main-banner.component';
+import { NgFor, NgIf } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,19 +22,23 @@ import { HomePageComponent } from './home-page/home-page.component';
     MainComponent,
     TicketsComponent,
     HotelsComponent,
-    HomePageComponent
+    HomePageComponent,
+    MainBannerComponent
   ],
   imports: [
+    NgIf,
+    NgFor,
     BrowserModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: "", component: MainComponent},
+      { path: 'Home', component: HomePageComponent},
+      { path: '', redirectTo:'Home', pathMatch:"full"},
       { path: "Login", component: LoginComponent},
       { path: "Registration", component: RegistrComponent},
       { path: 'Tickets', component: TicketsComponent},
       { path: 'Hotels', component: HotelsComponent},
-      { path: 'Home', component: HomePageComponent}
+      
     ])
   ],
   providers: [],

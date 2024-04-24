@@ -42,7 +42,7 @@ export class RegistrComponent {
       this.newPassword = "";
 
       alert("Account created");
-      this.router.navigate(['/']);
+      this.router.navigate(['/Login']);
     });
   }
 }

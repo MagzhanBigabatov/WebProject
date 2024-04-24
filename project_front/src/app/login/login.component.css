@@ -1,0 +1,147 @@
+.container {
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-weight: 900;
+    background-color:aliceblue;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+}
+.NameofBrand{
+    padding: 0;
+    font-size: 40px;
+}
+.div1{
+    padding: 20px;
+    padding-top: 20px;
+    margin: 0px;
+    background-color: rgb(212, 0, 215);
+    height: 20px;
+    
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+.navigationmenuleft{
+    width: 50%;
+    height: 100%;
+    
+}
+
+.navigationmenuright{
+    width: 50%;
+    height: 100%;
+    text-align: right;
+}
+
+.buttonOfNavigation{
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 3px solid white;
+    border-radius: 15%;
+    padding: 0.5%;
+    color:white;
+    transition: color 0.5s, border-color 0.5s;
+    text-decoration: none;
+    
+}
+.buttonOfNavigation:hover{
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 3px solid yellow;
+    border-radius: 15%;
+    padding: 0.5%;
+    color:yellow;
+    transition: color 0.5s, border-color 0.5s;
+    
+}
+.whitebox{
+    position: absolute;
+    float: right;
+    width: 100%;
+    height: 620px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+.log_in{
+    background-color: rgb(212, 0, 215);
+    width: 25%;
+    height: 50%;
+    margin: auto;
+    border-radius: 40px;
+    border: 1px solid rgb(212, 0, 215);
+    box-shadow: 0 0 10px rgb(212, 0, 215);
+    padding: 1%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+
+}
+input{
+    width: 80%;
+    height: 20%;
+    margin: 6px;
+    border: 2px solid rgb(0, 0, 0, 1);
+    border-radius: 40px;
+    padding-left: 14px;
+    font-size: 17px;
+}
+input:focus{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+input::placeholder{
+    font-size: 18px;
+    color: rgb(169, 169, 169);
+    font-weight: bold;
+}
+.ButtonLogin{
+    width: 70%;
+    height: 20%;
+    margin: auto;
+    border-radius: 40px;
+    border: 2px solid rgb(0, 0, 0, 1);
+    background-color: rgb(255, 183, 0);
+    color:#fff;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+.ButtonLogin:hover{
+    background-color: rgb(239, 152, 1);
+    transition: background-color 0.5s;
+}
+.forgetPassword{
+    text-decoration: none;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: rgb(255, 183, 0);
+}
+.forgetPassword:hover{
+    text-decoration: underline;
+}
+.registrateUser{
+    width: 20%;
+    height: 10%;
+    margin: auto;
+    border-radius: 40px;
+    border: 2px solid rgb(0, 0, 0, 1);
+    background-color: rgb(239, 152, 1);
+    color:#fff;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+.registrateUser:hover{
+    background-color: rgb(255, 183, 0);
+    transition: background-color 0.5s;
+}

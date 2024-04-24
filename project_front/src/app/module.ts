@@ -66,3 +66,8 @@ export interface Hotel {
     hotelId: HotelNum; // Assuming hotelId is hotel id
     HotelNUM: number;
   }
+
+  export interface User {
+    nickName: string;
+    password: string;
+  }
