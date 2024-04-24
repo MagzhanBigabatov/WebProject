@@ -6,7 +6,10 @@ from aviato import views
 urlpatterns = [
     path('Account/', views.registr_login),
     path('Tickets/', TicketView.as_view()),
-    path('Tickets/<int:ID>', TicketView.as_view())
+    path('Tickets/<int:ID>/', TicketView.as_view()),
+
+    path('Hotels/', HotelsView.as_view()),
+    path('Hotels/<int:ID>/', HotelsView.as_view())
 ]
 
 

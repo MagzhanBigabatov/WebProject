@@ -45,74 +45,47 @@ class Tikets(models.Model):
             'Arrival_time': self.Arrival_time,
             'number': self.number,
         }
-    
-class Buy_Ticket(models.Model):
-    Per_id = models.ForeignKey(Account, on_delete=models.CASCADE)
-    Tikets_id = models.ForeignKey(Tikets, on_delete=models.CASCADE)
 
-    def to_json(self):
-        return{
-            'id': self.id,
-            'Per_id': self.Per_id.id,
-            'Tickets_id': self.Tikets_id.id
-        }
     
 class Hotels(models.Model):
-    pass
+    city = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    cost = models.FloatField(default=0)
+    mini_descrip = models.TextField(default='')
+    description = models.TextField(default='')
+    raiting = models.IntegerField(default=0)
+    arrival_date = models.DateField(default=None)
+    date_departure = models.DateField(default=None)
+    url = models.CharField(max_length=255)
+
+
+class HotelsNUM(models.Model):
+    Name = models.CharField(max_length=255)
+    description = models.TextField(default='')
+    cost = models.FloatField(default=0)
+    hotel = models.ForeignKey(Hotels, on_delete=models.CASCADE)
+
+
+
+class Buy_Ticket(models.Model):
+    Per_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+    Tikets_id = models.ForeignKey(Tikets, on_delete=models.CASCADE, related_name='buy_tickets', null=True, blank=True)
+    BackTic = models.ForeignKey(Tikets, on_delete=models.CASCADE, related_name='return_tickets', null=True, blank=True)
+    TicNUM = models.IntegerField(default=0)
+    hotelId = models.ForeignKey(HotelsNUM, on_delete=models.CASCADE, null=True, blank=True)
+    HotelNUM = models.IntegerField(default=0)
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'Per_id': self.Per_id.id,
+            'TicketsNUM': self.Tikets_id.id if self.Tikets_id else None,
+            'TicketNUM': self.TicNUM,
+            'HotelsNUM': self.hotelId.id if self.hotelId else None,
+            'HotelNUM': self.HotelNUM,
+        }
+
 
 
 
     
-    # Acc_id = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
-    # Sec_tic = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
-
-    # Acc_id = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
-    # Sec_tic = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
-
-    # Create your models here.
-# class Company(models.Model):
-#     id = models.IntegerField(primary_key=True)  # Поле id будет теперь primary key
-#     name = models.CharField(max_length=255)
-#     description = models.TextField(default='')
-#     city = models.CharField(max_length=255)
-#     address = models.TextField(default='')
-
-#     class Meta:
-#         verbose_name = 'Company'
-#         verbose_name_plural = 'Company'
-
-#     def __str__(self):
-#         return f'{self.id}. Company name: {self.name}'
-
-#     def to_json(self):
-#         return {
-#             'id': self.id,
-#             'name': self.name,
-#             'description': self.description,
-#             'city': self.city,
-#             'address': self.address
-#         }
-
-# class Vacancy(models.Model):
-#     name = models.CharField(max_length=255)
-#     description = models.TextField(default='')
-#     salary = models.FloatField(max_length=255)
-#     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
-#     raiting = models.IntegerField()
-
-#     class Meta:
-#         verbose_name = 'Vacancy'
-#         verbose_name_plural = 'Vacancy'
-
-#     def __str__(self):
-#         return f'{self.id}. Vacancy name: {self.name}'
-
-    # def to_json(self):
-    #     return {
-    #         'id': self.id,
-    #         'name': self.name,
-    #         'description': self.description,
-    #         'salary': self.salary,
-    #         'company_id': self.company_id.id,
-    #         'raiting': self.raiting,
-    #     }

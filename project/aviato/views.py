@@ -5,8 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from aviato.models import Account, Tikets
-from aviato.serializers import  AccountSerializer, TicketsSerializer
+from aviato.models import Account, Tikets, Buy_Ticket, Hotels, HotelsNUM
+from aviato.serializers import TicketsSerializer, BuyTicketSerializer, HotelsSerializer
 
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
@@ -29,9 +29,39 @@ def registr_login(request):
             password = data.get('password', '')
         )
         return JsonResponse(account.to_json())
-
     
 
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def buy_tickets(request, pk=None):
+    if request.method == 'GET':
+        if pk:
+            buy_ticket = get_object_or_404(Buy_Ticket, pk=pk)
+            serializer = BuyTicketSerializer(buy_ticket)
+            return Response(serializer.data)
+        else:
+            buy_tickets = Buy_Ticket.objects.all()
+            serializer = BuyTicketSerializer(buy_tickets, many=True)
+            return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = BuyTicketSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+    elif request.method == 'PUT':
+        buy_ticket = get_object_or_404(Buy_Ticket, pk=pk)
+        serializer = BuyTicketSerializer(buy_ticket, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        buy_ticket = get_object_or_404(Buy_Ticket, pk=pk)
+        buy_ticket.delete()
+        return Response(status=204)
+
+    
+#CBV
 class TicketView(APIView):
     def get(self, request, ID=None):
         if ID is not None:
@@ -59,6 +89,38 @@ class TicketView(APIView):
     def delete(self, request, ID):
         ticket = Tikets.objects.get(pk=ID)
         ticket.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class HotelsView(APIView):
+    def get(self, request, ID=None):
+        if ID is not None:
+            hotel = Hotels.objects.get(pk=ID)
+            serializer = HotelsSerializer(hotel)
+            return Response(serializer.data)
+        else:
+            hotelSet = Hotels.objects.all()
+            hotelSerializer = HotelsSerializer(hotelSet, many=True)
+            return Response(hotelSerializer.data)
+
+    def post(self, request):
+        serializer = HotelsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, ID):
+        hotel = Hotels.objects.get(pk=ID)
+        serializer = HotelsSerializer(hotel, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, ID):
+        hotel = Hotels.objects.get(pk=ID)
+        hotel.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

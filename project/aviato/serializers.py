@@ -1,34 +1,70 @@
 from rest_framework import serializers
-from aviato.models import Account, Tikets
+from aviato.models import Account, Tikets, Hotels
+from .models import Buy_Ticket, HotelsNUM
 
-#Company, Vacancy, 
 
-# class CompanySerializer(serializers.Serializer):
-#     id = serializers.IntegerField()
-#     name = serializers.CharField()
-#     description = serializers.CharField()
-#     city = serializers.CharField()
-#     address = serializers.CharField()
 
-# class VacancyModelSerializer(serializers.ModelSerializer):
+# class AccountSerializer1(serializers.ModelSerializer):
 #     class Meta:
-#         model = Vacancy
-#         fields = ('id', 'name', 'salary', 'company_id', 'raiting')
+#         model = Account
+#         fields = '__all__' 
 
+
+#serializers.Serializer
 class AccountSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    nickname = serializers.CharField()
-    mail = serializers.CharField()
-    password = serializers.CharField()
-    manager = serializers.BooleanField()
+    id = serializers.IntegerField(read_only=True)
+    nickname = serializers.CharField(max_length=255)
+    mail = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=255)
+    manager = serializers.BooleanField(default=False)
 
-class AccountSerializer1(serializers.ModelSerializer):
-    class Meta:
-        model = Account
-        fields = '__all__' 
+    def create(self, validated_data):
+        return Account.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.nickname = validated_data.get('nickname', instance.nickname)
+        instance.mail = validated_data.get('mail', instance.mail)
+        instance.password = validated_data.get('password', instance.password)
+        instance.manager = validated_data.get('manager', instance.manager)
+        instance.save()
+        return instance
+
+    def delete(self, instance):
+        instance.delete()
+
+class BuyTicketSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    Per_id = serializers.PrimaryKeyRelatedField(queryset=Account.objects.all())
+    Tikets_id = serializers.PrimaryKeyRelatedField(queryset=Tikets.objects.all(), allow_null=True, required=False)
+    BackTic = serializers.PrimaryKeyRelatedField(queryset=Tikets.objects.all(), allow_null=True, required=False)
+    Hotels_id = serializers.PrimaryKeyRelatedField(queryset=HotelsNUM.objects.all(), allow_null=True, required=False)
+
+    def create(self, validated_data):
+        return Buy_Ticket.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.Per_id = validated_data.get('Per_id', instance.Per_id)
+        instance.Tikets_id = validated_data.get('Tikets_id', instance.Tikets_id)
+        instance.BackTic = validated_data.get('BackTic', instance.BackTic)
+        instance.Hotels_id = validated_data.get('Hotels_id', instance.Hotels_id)
+        instance.save()
+        return instance
 
 
+
+
+#serializers.ModelSerializer
 class TicketsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tikets
+        fields = '__all__'
+
+class HotelsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hotels
+        fields = '__all__'
+
+class HetelsNUMSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HotelsNUM
         fields = '__all__'
