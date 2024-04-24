@@ -1,8 +1,18 @@
-<p>login works!</p>
+<div class="container">
+    
+            
+    <div class = "log_in">
+            <input type="nickname" [(ngModel)]="newNickName" placeholder="nickname">
+            <input type="password" [(ngModel)]="newPassword" placeholder="password">
+            <button class="ButtonLogin" (click)="login()">Log in</button>
+            <a href="#" class="forgetPassword">Forgot your password?</a>
+            <br>
+    </div>
+        <a [routerLink]="['/Registration']" class="registrateUser">Registrate new user</a>
+    
+    
+    
+</div>
 
-<input type="nickname" [(ngModel)]="newNickName" placeholder="nickname">
-<br>
-<input type="password" [(ngModel)]="newPassword" placeholder="password">
-<br>
-<button (click)="login()">Click</button>
+
 

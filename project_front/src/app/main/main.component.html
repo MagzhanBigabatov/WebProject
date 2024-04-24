@@ -1,11 +1,25 @@
-<p>main works!</p>
+<div class="container">
+    <p class="NameofBrand">SOMETHING</p>
+    <div class="div1">
+        <div class="left navigationmenuleft">
+            <a href="#" class = "buttonOfNavigation">Air passage</a>
+            <a [routerLink]="['/Hotels']" class = "buttonOfNavigation">Hotel</a>
+            <a href="#" class = "buttonOfNavigation">Map</a>
+        </div>
+        <div class="right navigationmenuright">
+            <a href="#" class = "buttonOfNavigation">Help</a>
+            
+            <a *ngIf="userName.length == 0" [routerLink]="['/Login']" class = "buttonOfNavigation">Log in</a>
 
-<a [routerLink]="['/Login']">Login</a>
-<br>
-<a [routerLink]="['/Registration']">Registration</a>
-<br>
-<a [routerLink]="['/Tickets']">tickets</a>
-<br>
-<a [routerLink]="['/Hotels']">Hotels</a>
+            <a *ngIf="userName.length > 0" href='#' class = "buttonOfNavigation">Log out</a>
+
+            <a class = "buttonOfNavigation">{{userName}}</a>
+        </div>
+    </div>
+    
+</div>
+
+
+
 
 

@@ -14,18 +14,10 @@ export class HomePageComponent implements OnInit {
    
   constructor (private Avia: Avia){}
   ngOnInit() : void {
-    this.getTickets()
+    
   }
 
 
 
-  getTickets(): void {
-    const accountId = localStorage.getItem('accountId');
-    if (accountId) {
-      this.Avia.getAccountById(accountId).subscribe((data: registr_login) => {
-        // Присваиваем данные учетной записи переменной account
-        this.account = data;
-      });
-    }
-  }
+
 }
