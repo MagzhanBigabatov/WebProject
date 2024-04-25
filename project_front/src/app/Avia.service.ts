@@ -24,12 +24,24 @@ export class Avia {
       );
   }
 
-  getAccountByNickname(nickname: string): Observable<registr_login> {
-    return this.client.get<registr_login>(`${this.BASE_URL}/accounts/?nickname=${nickname}`);
-  }
+
   getAccountById(id: number): Observable<registr_login> {
     return this.client.get<registr_login>(`${this.BASE_URL}/accounts/${id}`);
   }
+
+ 
+  checkCredentials(nickname: string, password: string): any  {
+    const account = this.accounts.find((acc: registr_login) => acc.nickname === nickname && acc.password === password);
+    return account;
+  }
+  check(ticId: number): boolean {
+    const tic = this.tickets.find(tic => tic.id === ticId);
+    return tic !== undefined;
+  }
+  getAccountByNickname(nickname: string): Observable<registr_login> {
+    return this.client.get<registr_login>(`${this.BASE_URL}/accounts/?nickname=${nickname}`);
+  }
+  
 
   createAccount(nickName: String, Mail: String, Password: String): Observable<registr_login> {
     return this.client.post<registr_login>(
@@ -42,14 +54,8 @@ export class Avia {
     )
   }
 
-  checkCredentials(nickname: string, password: string): any  {
-    const account = this.accounts.find((acc: registr_login) => acc.nickname === nickname && acc.password === password);
-    return account;
-  }
-  check(ticId: number): boolean {
-    const tic = this.tickets.find(tic => tic.id === ticId);
-    return tic !== undefined;
-  }
+
+
 
   //tickets
   getTicket(): Observable<Ticket[]> {

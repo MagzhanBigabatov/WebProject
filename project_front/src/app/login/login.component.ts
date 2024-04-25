@@ -39,6 +39,7 @@ export class LoginComponent {
     if (!!user) {
       //console.log(user)
       this.currentUserService.changeCurrentUser(user);
+
       // Перенаправление на главную страницу
       this.router.navigate(['']);
     } else {

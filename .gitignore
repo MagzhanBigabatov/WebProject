@@ -44,3 +44,6 @@ Thumbs.db
 .myenv
 /myenv
 myenv
+
+
+/project/db.sqlite3
