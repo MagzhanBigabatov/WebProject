@@ -4,7 +4,8 @@
         <div class="left navigationmenuleft">
             <a href="#" class = "buttonOfNavigation">Air passage</a>
             <a [routerLink]="['/Hotels']" class = "buttonOfNavigation">Hotel</a>
-            <a href="#" class = "buttonOfNavigation">Map</a>
+            <a *ngIf="isUserManager" [routerLink]="['/Tickets']" class = "buttonOfNavigation">Tickets</a>
+
         </div>
         <div class="right navigationmenuright">
             <a href="#" class = "buttonOfNavigation">Help</a>
@@ -12,6 +13,8 @@
             <a *ngIf="userName.length == 0" [routerLink]="['/Login']" class = "buttonOfNavigation">Log in</a>
 
             <a *ngIf="userName.length > 0" href='#' class = "buttonOfNavigation">Log out</a>
+
+            
 
             <a class = "buttonOfNavigation">{{userName}}</a>
         </div>

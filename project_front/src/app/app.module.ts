@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { VacancyByCompanyComponent } from './vacancy-by-company/vacancy-by-company.component';
 import { RouterModule } from '@angular/router';
 import { RegistrComponent } from './registr/registr.component';
 import { LoginComponent } from './login/login.component';
@@ -18,7 +17,6 @@ import { NgFor, NgIf } from '@angular/common';
   declarations: [
     
     AppComponent,
-    VacancyByCompanyComponent,
     RegistrComponent,
     LoginComponent,
     MainComponent,

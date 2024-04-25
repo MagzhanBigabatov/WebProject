@@ -13,11 +13,15 @@ import { NgIf, NgFor } from '@angular/common';
 })
 export class MainComponent implements OnInit{
   userName: string = "";
+  userPassword: string = "";
+  isUserManager: boolean = false;
   constructor(private currentUserService: CurrentUserService){}
 
   ngOnInit(): void {
     this.currentUserService.CurrentUser$.subscribe((user) =>{
-      this.userName = user.nickName;
+      this.userName = user.nickname;
+      this.userPassword = user.password;
+      this.isUserManager = user.manager;
       // console.log(user.nickName, user.password);
     })  
 

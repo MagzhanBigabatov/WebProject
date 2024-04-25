@@ -35,12 +35,9 @@ export class LoginComponent {
   }
   
   login() {
-    const isValidCredentials = this.regLoginService.checkCredentials(this.newNickName, this.newPassword);
-    if (isValidCredentials) {
-      const user:User = {
-        nickName: this.newNickName,
-        password: this.newPassword
-      };
+    const user: any = this.regLoginService.checkCredentials(this.newNickName, this.newPassword);
+    if (!!user) {
+      //console.log(user)
       this.currentUserService.changeCurrentUser(user);
       // Перенаправление на главную страницу
       this.router.navigate(['']);

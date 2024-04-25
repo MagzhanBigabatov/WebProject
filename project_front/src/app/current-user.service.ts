@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { User } from './module';
+import { User, registr_login } from './module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrentUserService {
-  public CurrentUser$ = new Subject<User>
-
-      public changeCurrentUser(user: User){
+  public CurrentUser$ = new Subject<registr_login>
+      public changeCurrentUser(user: registr_login){
         this.CurrentUser$.next(user);
       }
 }
