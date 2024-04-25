@@ -36,10 +36,10 @@ class Tikets(models.Model):
     city2 = models.CharField(max_length=255)
     cost = models.FloatField(default=0)
     company = models.CharField(max_length=255)
-    depar_date = models.DateField(default=None)
-    depar_time = models.TimeField(default=None)
-    Arrival_date = models.DateField(default=None)
-    Arrival_time = models.TimeField(default=None)
+    depar_date = models.DateField(default=None, null=True)
+    depar_time = models.TimeField(default=None,null=True)
+    Arrival_date = models.DateField(default=None,null=True)
+    Arrival_time = models.TimeField(default=None,null=True)
     number = models.IntegerField(default=0)
 
 
@@ -65,9 +65,9 @@ class Hotels(models.Model):
     mini_descrip = models.TextField(default='')
     description = models.TextField(default='')
     raiting = models.IntegerField(default=0)
-    arrival_date = models.DateField(default=None)
-    date_departure = models.DateField(default=None)
-    url = models.CharField(max_length=255)
+    arrival_date = models.DateField(default=None, null=True)
+    date_departure = models.DateField(default=None, null=True)
+    url = models.CharField(max_length=255, null=True)
 
 
 class HotelsNUM(models.Model):
