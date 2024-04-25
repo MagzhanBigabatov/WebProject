@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Hotel, registr_login, Ticket, User } from './module';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { Time } from '@angular/common';
+import { tick } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,11 @@ export class Avia {
     const tic = this.tickets.find(tic => tic.id === ticId);
     return tic !== undefined;
   }
-  getAccountByNickname(nickname: string): Observable<registr_login> {
-    return this.client.get<registr_login>(`${this.BASE_URL}/accounts/?nickname=${nickname}`);
-  }
+
+
+
+
+
   
 
   createAccount(nickName: String, Mail: String, Password: String): Observable<registr_login> {
@@ -58,6 +61,13 @@ export class Avia {
 
 
   //tickets
+  checkTickets(city1: string, city2: string, depar_date: Date): Observable<Ticket[]> {
+    return this.getTicket().pipe(
+      map(tickets => tickets.filter(tic => tic.city1 === city1 && tic.city2 === city2 && tic.depar_date === depar_date))
+    );
+  }
+
+
   getTicket(): Observable<Ticket[]> {
     return this.client.get<Ticket[]>(`${this.BASE_URL}/aviato/Tickets/`).pipe(
       tap(tickets => this.tickets = tickets)

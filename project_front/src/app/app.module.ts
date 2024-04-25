@@ -12,6 +12,9 @@ import { HotelsComponent } from './hotels/hotels.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MainBannerComponent } from './main-banner/main-banner.component';
 import { NgFor, NgIf } from '@angular/common';
+import { AdminHotelsComponent } from './admin-hotels/admin-hotels.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { AirPassageComponent } from './air-passage/air-passage.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { NgFor, NgIf } from '@angular/common';
     TicketsComponent,
     HotelsComponent,
     HomePageComponent,
-    MainBannerComponent
+    MainBannerComponent,
+    AdminHotelsComponent,
+    AccountDetailsComponent,
+    AirPassageComponent
   ],
   imports: [
     NgIf,
@@ -38,6 +44,9 @@ import { NgFor, NgIf } from '@angular/common';
       { path: "Registration", component: RegistrComponent},
       { path: 'Tickets', component: TicketsComponent},
       { path: 'Hotels', component: HotelsComponent},
+      { path: 'AdminHotels', component: AdminHotelsComponent},
+      { path: 'AirPassage', component: AirPassageComponent},
+      { path: 'AccountDetail', component: AccountDetailsComponent}
       
     ])
   ],

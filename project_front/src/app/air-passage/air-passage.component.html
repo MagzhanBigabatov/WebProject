@@ -1,0 +1,15 @@
+
+<input placeholder="City1" [(ngModel)]="city1">
+<input placeholder="City2" [(ngModel)]="city2">
+<input placeholder="Date" [(ngModel)]="depar_date" type="date">
+<input placeholder="">
+<input placeholder="Num of passage" [(ngModel)]="newNum">
+<button (click)="findTicket()">Find</button>
+
+<div *ngIf="searchPerformed">
+    <ul>
+        <li *ngFor="let ticket of tickets">
+            {{ticket.id}}. {{ticket.city1}} - {{ticket.city2}},  {{ticket.cost}}, {{ticket.depar_date}}, {{ticket.arrival_date}}, {{ticket.number}}
+        </li>
+    </ul>
+</div>

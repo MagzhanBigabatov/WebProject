@@ -37,7 +37,6 @@ export class LoginComponent {
   login() {
     const user: any = this.regLoginService.checkCredentials(this.newNickName, this.newPassword);
     if (!!user) {
-      //console.log(user)
       this.currentUserService.changeCurrentUser(user);
 
       // Перенаправление на главную страницу

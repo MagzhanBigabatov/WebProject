@@ -16,18 +16,8 @@ export class HomePageComponent implements OnInit {
   constructor(private Avia: Avia) { }
 
   ngOnInit(): void {
-    this.getTickets();
+
   }
 
   
-
-getTickets(): void {
-    const accountId = localStorage.getItem('accountId');
-    const nickname = localStorage.getItem('nickname');
-    if (nickname) {
-        this.Avia.getAccountByNickname(nickname).subscribe((data: registr_login) => {
-            this.account = data; // Assign the received data
-      })
-    }
-    }
-  }
+}

@@ -13,18 +13,13 @@ export class HotelsComponent {
   constructor(private Avia: Avia) {}
 
   ngOnInit(): void {
-    this.getTickets();
+    this.getHotels();
   }
 
-  getTickets(): void {
+  getHotels(): void {
     this.Avia.getHotels().subscribe((data: Hotel[]) => {
       this.hotels = data;
     });
   }
 
-  // getTicketById(ticketId: number): void {
-  //   this.Avia.getTickets_by_id(ticketId).subscribe((data: Ticket) => {
-  //     // Handle the data as needed
-  //   });
-  //}
 } 
