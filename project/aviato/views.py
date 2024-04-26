@@ -217,43 +217,50 @@ class UserDetailView(APIView):
     
 
 
-
-
+l = list()
+index = 0
 def TicketsId(request, pk=None):
     try:
         task = Account.objects.get(id=pk)
-        request.session['tickets'] = task
     except Account.DoesNotExist as e:
         return JsonResponse({"error": str(e)})
     products_json = [p.to_json() for p in task.tickets.all()]
-
-    return JsonResponse(products_json, safe=False)
-
-
-def TicketsBuy(request, pk=None):
-    t = request.session['tickets']
-    try:
-        task = t.objects.get(id=pk)
-    except t.DoesNotExist as e:
-        return JsonResponse({"error": str(e)})
-
-    products_json = [p.to_json() for p in task.buy_tickets.all()]
-
-    return JsonResponse(products_json, safe=False)
+    products = list()
+    
+    for i in products_json:
+        products.append(i)
+    for i in products:
+        l.append(i['TicketsID'])
+    # return JsonResponse(l, safe=False)
+    index = pk
+    return l
+    
 
 
-# def first_view(request):
-#    cards = Card.objects.all()
-#    request.session['cards'] = cards
 
-# def second_view(request):
-#    cards = request.session['cards']
+# def TicketsBuy(request, pk=None):
+#     list = TicketsId
 
+#     task = list()
+#     for  i in list:
+#         task.append(Tikets.object.get(i))
 
-    # def delete(self, request, ID):
-    #     Accounts = Account.objects.get(pk=ID)
-    #     AccountSerializer.delete()
-    #     return Response(status=status.HTTP_204_NO_CONTENT)
+#     products_json = [p.to_json() for p in task]
+
+#     return JsonResponse(products_json, safe=False)
+
+# def TicketsBuy(request, pk=None):
+    
+#     TicketsId(pk=pk, request=request)
+    
+#     task = l
+#     products_list = list()
+#     for i in task:
+#         t = Tikets.objects.get(id = i)
+#         products_json = [p.to_json() for p in t.bue.all()]
+#         products_list.append(products_json)
+
+#     return JsonResponse(products_list, safe=False)
 
 
 

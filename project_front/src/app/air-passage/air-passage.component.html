@@ -6,7 +6,7 @@
 <input placeholder="Num of passage" [(ngModel)]="newNum">
 <button (click)="findTicket()">Find</button>
 
-<div >
+<div>
     <ul>
         <li *ngFor="let ticket of tickets">
             {{ticket.id}}. {{ticket.city1}} - {{ticket.city2}},  {{ticket.cost}}, {{ticket.depar_date}}, {{ticket.Arrival_date}}, {{ticket.number}}

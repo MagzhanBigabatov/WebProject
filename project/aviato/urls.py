@@ -22,8 +22,8 @@ urlpatterns = [
     path('details/<int:pk>/', views.buy_tickets),
     path('details/<int:pk>/tickets', views.buy_ticketsId),
 
-    path('Account/<int:pk>/tickets', views.TicketsId),
-    path('Account/<int:pk>/detail/tickets', views.TicketsBuy)
+    # path('Account/<int:pk>/tickets', views.TicketsId),
+    # path('Account//detail/tickets', views.TicketsBuy)
     
 ]
 

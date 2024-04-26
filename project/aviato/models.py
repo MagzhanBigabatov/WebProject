@@ -24,33 +24,6 @@ class Account(models.Model):
          }
     
 
-class Tikets(models.Model):
-    city1 = models.CharField(max_length=255)
-    city2 = models.CharField(max_length=255)
-    cost = models.FloatField(default=0)
-    company = models.CharField(max_length=255)
-    depar_date = models.DateField(default=None, null=True)
-    depar_time = models.TimeField(default=None,null=True)
-    Arrival_date = models.DateField(default=None,null=True)
-    Arrival_time = models.TimeField(default=None,null=True)
-    number = models.IntegerField(default=0)
-
-
-    def to_json(self):
-        return {
-            'id': self.id,
-            'city1': self.city1,
-            'city2': self.city2,
-            'cost': self.cost,
-            'company': self.company,
-            'depar_date': self.depar_date,
-            'depar_time': self.depar_time,
-            'Arrival_date': self.Arrival_date,
-            'Arrival_time': self.Arrival_time,
-            'number': self.number,
-        }
-
-    
 class Hotels(models.Model):
     city = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
@@ -69,12 +42,8 @@ class HotelsNUM(models.Model):
     cost = models.FloatField(default=0)
     hotel = models.ForeignKey(Hotels, on_delete=models.CASCADE)
 
-#добавить 
-
 class Buy_Ticket(models.Model):
     Per_id = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="tickets", null=True, blank=True)
-    Tikets_id = models.ForeignKey(Tikets, on_delete=models.CASCADE, related_name='buy_tickets', null=True, blank=True)
-    BackTic = models.ForeignKey(Tikets, on_delete=models.CASCADE, related_name='return_tickets', null=True, blank=True)
     TicNUM = models.IntegerField(default=0)
     hotelId = models.ForeignKey(HotelsNUM, on_delete=models.CASCADE, null=True, blank=True)
     HotelNUM = models.IntegerField(default=0)
@@ -88,6 +57,40 @@ class Buy_Ticket(models.Model):
             'HotelsID': self.hotelId.id if self.hotelId else None,
             'HotelNUM': self.HotelNUM,
         }
+
+class Tikets(models.Model):
+    city1 = models.CharField(max_length=255)
+    city2 = models.CharField(max_length=255)
+    cost = models.FloatField(default=0)
+    company = models.CharField(max_length=255)
+    depar_date = models.DateField(default=None, null=True)
+    depar_time = models.TimeField(default=None,null=True)
+    Arrival_date = models.DateField(default=None,null=True)
+    Arrival_time = models.TimeField(default=None,null=True)
+    number = models.IntegerField(default=0)
+    BuyTic = models.ForeignKey(Buy_Ticket, on_delete=models.CASCADE, null=True, blank=True)
+
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'city1': self.city1,
+            'city2': self.city2,
+            'cost': self.cost,
+            'company': self.company,
+            'depar_date': self.depar_date,
+            'depar_time': self.depar_time,
+            'Arrival_date': self.Arrival_date,
+            'Arrival_time': self.Arrival_time,
+            'number': self.number,
+        }
+
+    
+
+
+#добавить 
+
+
 
 
 
