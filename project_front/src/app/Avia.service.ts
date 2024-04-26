@@ -175,7 +175,7 @@ export class Avia {
     );
   }
   getBuyticID(perId: number): Observable<Ticket[]>{
-    return this.client.get<Ticket[]>(`${this.BASE_URL}/aviato/Account/${perId}/tickets`)
+    return this.client.get<Ticket[]>(`${this.BASE_URL}/aviato/Account/${perId}/detail/tickets`)
   }
 
 

@@ -249,19 +249,15 @@ def TicketsId(request, pk=None):
 
 #     return JsonResponse(products_json, safe=False)
 
-# def TicketsBuy(request, pk=None):
-    
-#     TicketsId(pk=pk, request=request)
-    
-#     task = l
-#     products_list = list()
-#     for i in task:
-#         t = Tikets.objects.get(id = i)
-#         products_json = [p.to_json() for p in t.bue.all()]
-#         products_list.append(products_json)
 
-#     return JsonResponse(products_list, safe=False)
 
+def TicketsBuy(request, pk=None):
+    
+    TicketsId(pk=pk, request=request)
+    t = Tikets.objects.filter(id__in = l)
+    
+    data = [product.to_json() for product in t]
+    return JsonResponse(data, safe=False)
 
 
 
