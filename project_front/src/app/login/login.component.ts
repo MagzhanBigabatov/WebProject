@@ -34,16 +34,29 @@ export class LoginComponent {
     return !!account;
   }
   
+  // login() {
+  //   const user: any = this.regLoginService.checkCredentials(this.newNickName, this.newPassword);
+  //   if (!!user) {
+  //     //console.log(user)
+  //     this.currentUserService.changeCurrentUser(user);
+
+  //     // Перенаправление на главную страницу
+  //     this.router.navigate(['']);
+  //   } else {
+  //     alert('Incorrect nickname or password');
+  //   }
+  // }
   login() {
     const user: any = this.regLoginService.checkCredentials(this.newNickName, this.newPassword);
     if (!!user) {
-      this.currentUserService.changeCurrentUser(user);
-
-      // Перенаправление на главную страницу
-      this.router.navigate(['']);
+      // Сохраняем данные пользователя в LocalStorage
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      // window.location.reload();
+      this.router.navigate(['']); 
     } else {
       alert('Incorrect nickname or password');
     }
   }
+  
 
 }

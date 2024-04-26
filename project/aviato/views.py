@@ -63,6 +63,41 @@ def buy_tickets(request, pk=None):
         buy_ticket = get_object_or_404(Buy_Ticket, pk=pk)
         buy_ticket.delete()
         return Response(status=204)
+    
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def buy_ticketsId(request, pk=None):
+    if request.method == 'GET':
+        per_id = request.query_params.get('per_id', None)
+        if per_id:
+            buy_tickets = Buy_Ticket.objects.filter(Per_id=per_id)
+            serializer = BuyTicketSerializer(buy_tickets, many=True)
+            return Response(serializer.data)
+        else:
+            buy_tickets = Buy_Ticket.objects.all()
+            serializer = BuyTicketSerializer(buy_tickets, many=True)
+            return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = BuyTicketSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+    elif request.method == 'PUT':
+        buy_ticket = get_object_or_404(Buy_Ticket, pk=pk)
+        serializer = BuyTicketSerializer(buy_ticket, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        buy_ticket = get_object_or_404(Buy_Ticket, pk=pk)
+        buy_ticket.delete()
+        return Response(status=204)
+    
+
+    
+
 
     
 
@@ -179,6 +214,40 @@ class UserDetailView(APIView):
         user = User.objects.get(pk=pk)
         serializer = UserBasicSerializer(user)
         return Response(serializer.data)
+    
+
+
+
+
+def TicketsId(request, pk=None):
+    try:
+        task = Account.objects.get(id=pk)
+        request.session['tickets'] = task
+    except Account.DoesNotExist as e:
+        return JsonResponse({"error": str(e)})
+    products_json = [p.to_json() for p in task.tickets.all()]
+
+    return JsonResponse(products_json, safe=False)
+
+
+def TicketsBuy(request, pk=None):
+    t = request.session['tickets']
+    try:
+        task = t.objects.get(id=pk)
+    except t.DoesNotExist as e:
+        return JsonResponse({"error": str(e)})
+
+    products_json = [p.to_json() for p in task.buy_tickets.all()]
+
+    return JsonResponse(products_json, safe=False)
+
+
+# def first_view(request):
+#    cards = Card.objects.all()
+#    request.session['cards'] = cards
+
+# def second_view(request):
+#    cards = request.session['cards']
 
 
     # def delete(self, request, ID):

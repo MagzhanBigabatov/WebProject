@@ -34,7 +34,7 @@ class BuyTicketSerializer(serializers.Serializer):
     Per_id = serializers.PrimaryKeyRelatedField(queryset=Account.objects.all())
     Tikets_id = serializers.PrimaryKeyRelatedField(queryset=Tikets.objects.all(), allow_null=True, required=False)
     BackTic = serializers.PrimaryKeyRelatedField(queryset=Tikets.objects.all(), allow_null=True, required=False)
-    Hotels_id = serializers.PrimaryKeyRelatedField(queryset=HotelsNUM.objects.all(), allow_null=True, required=False)
+    hotelId = serializers.PrimaryKeyRelatedField(queryset=HotelsNUM.objects.all(), allow_null=True, required=False)
 
     def create(self, validated_data):
         return Buy_Ticket.objects.create(**validated_data)
@@ -43,7 +43,7 @@ class BuyTicketSerializer(serializers.Serializer):
         instance.Per_id = validated_data.get('Per_id', instance.Per_id)
         instance.Tikets_id = validated_data.get('Tikets_id', instance.Tikets_id)
         instance.BackTic = validated_data.get('BackTic', instance.BackTic)
-        instance.Hotels_id = validated_data.get('Hotels_id', instance.Hotels_id)
+        instance.hotelId = validated_data.get('Hotels_id', instance.hotelId)
         instance.save()
         return instance
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Hotel, registr_login, Ticket, User } from './module';
+import { BuyTicket, Hotel, registr_login, Ticket, User } from './module';
 import { HttpClient } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { Time } from '@angular/common';
@@ -15,6 +15,7 @@ export class Avia {
   accounts: registr_login[] = [];
   tickets: Ticket[] = [];
   hotels: Hotel[] = [];
+  buytic: BuyTicket[] = [];
 
   constructor(private client: HttpClient) { }
 
@@ -70,6 +71,11 @@ export class Avia {
 
   getTicket(): Observable<Ticket[]> {
     return this.client.get<Ticket[]>(`${this.BASE_URL}/aviato/Tickets/`).pipe(
+      tap(tickets => this.tickets = tickets)
+    );
+  }
+  getTicketId(ticId: number[]): Observable<Ticket[]> {
+    return this.client.get<Ticket[]>(`${this.BASE_URL}/aviato/Tickets/${ticId}/`).pipe(
       tap(tickets => this.tickets = tickets)
     );
   }
@@ -162,4 +168,59 @@ export class Avia {
     );
   }
 
-}
+
+  getBuytic(): Observable<BuyTicket[]>{
+    return this.client.get<BuyTicket[]>(`${this.BASE_URL}/aviato/details/`).pipe(
+      tap(buytic => this.buytic = buytic)
+    );
+  }
+  getBuyticID(perId: number): Observable<Ticket[]>{
+    return this.client.get<Ticket[]>(`${this.BASE_URL}/aviato/Account/${perId}/tickets`)
+  }
+
+
+  createBuyTicket(
+    Per_id: number,
+    Tikets_id: number| null,
+    BackTic: number| null,
+    TicNUM: number| null,
+    hotelId: number| null,
+    HotelNUM: number| null
+    ): Observable<any> {
+        return this.client.post<any>(
+            `${this.BASE_URL}/aviato/details/`,
+            {
+                Per_id: Per_id,
+                Tikets_id: Tikets_id,
+                BackTic: BackTic,
+                TicNUM: TicNUM,
+                hotelId: hotelId,
+                HotelNUM: HotelNUM
+            }
+        );
+    }
+
+    updateAccount(
+      ID: number, 
+      Per_id: number | null = null,
+      ticketId: number | null = null, 
+      backTicketId: number | null = null, 
+      numOfTickets: number | 0, 
+      hotelId: number | null = null, 
+      numOfRooms: number | 0): Observable<BuyTicket> {
+      console.log(ID)
+      return this.client.put<BuyTicket>(
+          `${this.BASE_URL}/aviato/details/${ID}/`,
+          {
+              Per_id: Per_id,
+              Tikets_id: ticketId,
+              BackTic: backTicketId,
+              hotelId: hotelId,
+          }
+      );
+    }
+
+    
+  }
+  
+

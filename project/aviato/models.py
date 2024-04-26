@@ -2,13 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    manager = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.user.username
     
 
     
@@ -79,7 +72,7 @@ class HotelsNUM(models.Model):
 #добавить 
 
 class Buy_Ticket(models.Model):
-    Per_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+    Per_id = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="tickets", null=True, blank=True)
     Tikets_id = models.ForeignKey(Tikets, on_delete=models.CASCADE, related_name='buy_tickets', null=True, blank=True)
     BackTic = models.ForeignKey(Tikets, on_delete=models.CASCADE, related_name='return_tickets', null=True, blank=True)
     TicNUM = models.IntegerField(default=0)
@@ -90,9 +83,9 @@ class Buy_Ticket(models.Model):
         return {
             'id': self.id,
             'Per_id': self.Per_id.id,
-            'TicketsNUM': self.Tikets_id.id if self.Tikets_id else None,
+            'TicketsID': self.Tikets_id.id if self.Tikets_id else None,
             'TicketNUM': self.TicNUM,
-            'HotelsNUM': self.hotelId.id if self.hotelId else None,
+            'HotelsID': self.hotelId.id if self.hotelId else None,
             'HotelNUM': self.HotelNUM,
         }
 

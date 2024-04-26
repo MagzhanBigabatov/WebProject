@@ -20,14 +20,16 @@
 
 
 <div>
-    <ul>
-        <li *ngFor="let ticket of tickets">
-          <a>
-            {{ticket.id}} - {{ticket.city1}} - {{ticket.city2}}  {{ticket.cost}}. 
-          </a>
-          <button (click)="deleteTicket(ticket.id)">Delete</button>
-        </li>
-      </ul>
+  <ul>
+    <li *ngFor="let ticket of tickets">
+      <a>
+        {{ ticket.id }}. {{ ticket.city1 }} - {{ ticket.city2 }},  {{ ticket.cost }}. 
+      </a>
+      <p>Departure: {{ ticket.depar_date | date: 'dd/MM/yyyy' }} {{ ticket.depar_time }}</p>
+      <p>Arrival: {{ ticket.Arrival_date | date: 'dd/MM/yyyy' }} {{ ticket.Arrival_time }}</p>
+      <button (click)="deleteTicket(ticket.id)">Delete</button>
+    </li>
+  </ul>
 </div>
 
 

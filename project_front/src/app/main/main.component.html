@@ -13,11 +13,11 @@
             
             <a *ngIf="userName.length == 0" [routerLink]="['/Login']" class = "buttonOfNavigation">Log in</a>
 
-            <a *ngIf="userName.length > 0" href='#' class = "buttonOfNavigation">Log out</a>
+            <a *ngIf="userName.length > 0" href='#' class = "buttonOfNavigation" (click)="logout()">Log out</a>
 
             
 
-            <a class = "buttonOfNavigation">{{userName}}</a>
+            <a class = "buttonOfNavigation" [routerLink]="['/AccountDetail']">{{userName}}</a>
         </div>
     </div>
     

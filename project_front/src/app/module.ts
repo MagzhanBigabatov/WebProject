@@ -33,8 +33,8 @@ export interface Ticket {
     company: string;
     depar_date:Date;
     depar_time: Time;
-    arrival_date: Date;
-    arrival_time: Time;
+    Arrival_date: Date;
+    Arrival_time: Time;
     number: number;
 }
 export interface Hotel {
@@ -60,11 +60,11 @@ export interface Hotel {
 
   export interface BuyTicket {
     id: number;
-    Per_id: registr_login; // Assuming Per_id is user id
-    Tikets_id: Ticket; // Assuming Tikets_id is ticket id
-    BackTic: Ticket; // Assuming BackTic is ticket id
+    Per_id: number;
+    Tikets_id: number;
+    BackTic: number; 
     TicNUM: number;
-    hotelId: HotelNum; // Assuming hotelId is hotel id
+    hotelId: number; 
     HotelNUM: number;
   }
 
