@@ -217,9 +217,9 @@ class UserDetailView(APIView):
     
 
 
-l = list()
 index = 0
 def TicketsId(request, pk=None):
+    l = []
     try:
         task = Account.objects.get(id=pk)
     except Account.DoesNotExist as e:
@@ -234,6 +234,7 @@ def TicketsId(request, pk=None):
     # return JsonResponse(l, safe=False)
     index = pk
     return l
+    
     
 
 
@@ -253,7 +254,7 @@ def TicketsId(request, pk=None):
 
 def TicketsBuy(request, pk=None):
     
-    TicketsId(pk=pk, request=request)
+    l =TicketsId(pk=pk, request=request)
     t = Tikets.objects.filter(id__in = l)
     
     data = [product.to_json() for product in t]
