@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Hotel</h1>
+  <h1 class="middlename">Hotel</h1>
   <div class="airPassagebar">
       <input class="leftborderradius inputAirPassageBar" placeholder="City"> 
       <input class="inputAirPassageBar " placeholder="Arrival"> 
@@ -8,13 +8,9 @@
       <button class="rightborderradius buttonAirPassageBar">Find</button>
   </div>
 </div>
-
-<div>
-    <ul>
-        <li *ngFor="let hotel of hotels">
-          <a>
-            {{hotel.id}} - {{hotel.city}}.  {{hotel.name}}.
-          </a>
-        </li>
-      </ul>
+<div *ngFor="let hotel of hotels" class="airPassagebar ChoiceTicket">
+  <div class="detailsAirPassageBar leftborderradius"><p>{{hotel.id}}</p></div> 
+  <div class="detailsAirPassageBar"><p>{{hotel.city}}</p></div>
+  <div class="detailsAirPassageBar"><p>{{hotel.name}}</p></div>
+  <button class="rightborderradius buttonAirPassageBar greenForBuy">Buy</button>
 </div>

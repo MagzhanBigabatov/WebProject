@@ -1,17 +1,24 @@
+<div class="container">
+<h1 class="middlename">Air passage</h1>
+<div class="airPassagebar">
+<input placeholder="City1" [(ngModel)]="city1" class="leftborderradius inputAirPassageBar">
+<input placeholder="City2" [(ngModel)]="city2" class="inputAirPassageBar">
+<input placeholder="Date" [(ngModel)]="depar_date" type="date" class="inputAirPassageBar">
+<input placeholder="Num of passage" [(ngModel)]="newNum" class="inputAirPassageBar">
+<button (click)="findTicket()" class="rightborderradius buttonAirPassageBar">Find</button>
+</div>
+<div>
 
-<input placeholder="City1" [(ngModel)]="city1">
-<input placeholder="City2" [(ngModel)]="city2">
-<input placeholder="Date" [(ngModel)]="depar_date" type="date">
-<input placeholder="">
-<input placeholder="Num of passage" [(ngModel)]="newNum">
-<button (click)="findTicket()">Find</button>
-
-<div >
-    <ul>
-        <li *ngFor="let ticket of tickets">
-            {{ticket.id}}. {{ticket.city1}} - {{ticket.city2}},  {{ticket.cost}}, {{ticket.depar_date}}, {{ticket.Arrival_date}}, {{ticket.number}}
-            <button (click)="buyTicket(ticket.id)">Buy</button>
-        </li>
-    </ul>
+        <div *ngFor="let ticket of tickets" class="airPassagebar ChoiceTicket">
+            <div class="detailsAirPassageBar leftborderradius"><p>{{ticket.id}}</p></div> 
+            <div class="detailsAirPassageBar"><p>{{ticket.city1}}</p></div>
+            <div class="detailsAirPassageBar"><p>{{ticket.city2}}</p></div>
+            <div class="detailsAirPassageBar"><p>{{ticket.cost}}</p></div>
+            <div class="detailsAirPassageBar"><p>{{ticket.depar_date}}</p></div>
+            <div class="detailsAirPassageBar"><p>{{ticket.Arrival_date}}</p></div>
+            <div class="detailsAirPassageBar"><p>{{ticket.number}}</p></div>
+            <button (click)="buyTicket(ticket.id)" class="rightborderradius buttonAirPassageBar greenForBuy">Buy</button>
+        </div>
+</div>
 </div>
 

@@ -1,0 +1,83 @@
+.container{
+    font-family:Arial, Helvetica, sans-serif;
+}
+.middlename{
+    margin: auto;
+    width: 15%;
+}
+.airPassagebar{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 60px;
+    display: flex;
+    text-align: center;
+    padding: 2%;
+    background-color:rgb(212, 0, 215);
+    border-radius: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    margin-top: 20px;
+}
+.inputAirPassageBar{
+    border: solid black 2px;
+    width: 20%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    font-size: 18px;
+
+}
+.inputAirPassageBar:focus{
+    border: solid red 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.inputAirPassageBar::placeholder{
+    font-size: 18px;
+    color: rgb(169, 169, 169);
+    font-weight: bold;
+}
+.buttonAirPassageBar{
+    border: solid black 2px;
+    width: 20%;
+    font-size: 20px;
+    font-weight: bold;
+    color:white;
+    background-color: rgb(255, 183, 0);
+    transition: background-color 0.5s;
+}
+.buttonAirPassageBar:hover{
+    background-color: rgb(239, 152, 1);
+    transition: background-color 0.5s;
+}
+.detailsAirPassageBar{
+    border: solid black 2px;
+    width: 20%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    font-size: 14px;
+}
+.ChoiceTicket{
+    background-color: rgb(255, 0, 132);
+    width: 90%;
+    height: 45px;
+    margin-top: 40px;
+}
+.greenForBuy{
+    background-color: rgb(0, 223, 56);
+}
+.greenForBuy:hover{
+    background-color: rgb(0, 188, 47);
+}
+.leftborderradius{
+    border-radius: 40px 0 0 40px; /* Значения для радиуса границы (верхний левый, верхний правый, нижний правый, нижний левый углы) */
+}
+.rightborderradius{
+    border-radius: 0 40px 40px 0; /* Значения для радиуса границы (верхний левый, верхний правый, нижний правый, нижний левый углы) */
+}
