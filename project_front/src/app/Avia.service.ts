@@ -87,8 +87,8 @@ export class Avia {
     company: string,
     depar_date: string,
     depar_time: string,
-    arrival_date: string,
-    arrival_time: string,
+    Arrival_date: string,
+    Arrival_time: string,
     count: number
   ): Observable<Ticket> {
     return this.client.post<Ticket>(
@@ -100,8 +100,8 @@ export class Avia {
         company: company,
         depar_date: depar_date,
         depar_time: depar_time,
-        arrival_date: arrival_date,
-        arrival_time: arrival_time,
+        Arrival_date: Arrival_date,
+        Arrival_time: Arrival_time,
         count: count
       }
     );
@@ -115,8 +115,8 @@ export class Avia {
     company: string,
     depar_date: string,
     depar_time: string,
-    arrival_date: string,
-    arrival_time: string,
+    Arrival_date: string,
+    Arrival_time: string,
     count: number
   ): Observable<Ticket> {
     return this.client.put<Ticket>(
@@ -128,8 +128,8 @@ export class Avia {
         company: company,
         depar_date: depar_date,
         depar_time: depar_time,
-        arrival_date: arrival_date,
-        arrival_time: arrival_time,
+        Arrival_date: Arrival_date,
+        Arrival_time: Arrival_time,
         count: count
       }
     );

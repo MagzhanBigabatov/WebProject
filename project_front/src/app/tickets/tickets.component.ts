@@ -17,8 +17,8 @@ export class TicketsComponent {
   company: string = "";
   depar_date: string = "";
   depar_time: string = "";
-  arrival_date: string = "";
-  arrival_time: string = "";
+  Arrival_date: string = "";
+  Arrival_time: string = "";
   count: number = 0;  
 
   constructor(private Avia: Avia) {}
@@ -41,8 +41,8 @@ export class TicketsComponent {
       this.company,
       this.depar_date,
       this.depar_time,
-      this.arrival_date,
-      this.arrival_time,
+      this.Arrival_date,
+      this.Arrival_time,
       this.count
     ).subscribe(() => {
       this.city1 = ''; 
@@ -51,8 +51,8 @@ export class TicketsComponent {
       this.company = '';
       this.depar_date = "";
       this.depar_time = "";
-      this.arrival_date = "";
-      this.arrival_time = "";
+      this.Arrival_date = "";
+      this.Arrival_time = "";
       this.count = 0;
 
       alert("Tickets created");
@@ -74,8 +74,8 @@ export class TicketsComponent {
       this.company,
       this.depar_date,
       this.depar_time,
-      this.arrival_date,
-      this.arrival_time,
+      this.Arrival_date,
+      this.Arrival_time,
       this.count
     ).subscribe(() => {
       this.city1 = ''; 
@@ -84,8 +84,8 @@ export class TicketsComponent {
       this.company = '';
       this.depar_date = "";
       this.depar_time = "";
-      this.arrival_date = "";
-      this.arrival_time = "";
+      this.Arrival_date = "";
+      this.Arrival_time = "";
       this.count = 0;
   
       alert("Tickets updated");
